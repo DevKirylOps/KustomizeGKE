@@ -5,3 +5,4 @@ namePrefix: prod-
 
 patchesStrategicMerge:
   - uri-patch.yaml
+  - cron-patch.yaml

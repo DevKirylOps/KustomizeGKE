@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import requests
 import os
 from pymongo import MongoClient
@@ -22,22 +22,17 @@ db = client[DB_NAME]
 collection = db['api_logs']
 data_collection = db['test_data']
 
-@app.route('/proxy', methods=['GET'])
-def proxy():
-    query = request.args.get('query')
-    if not query:
-        return jsonify({"error": "Query parameter is required."}), 400
-
-    # Forward request to public API
-    response = requests.get(API_BASE_URL, params={'title': query})
-
-    if response.status_code == 200:
-        data = response.json()
-        # Log query to MongoDB
-        collection.insert_one({"query": query, "response": data})
-        return jsonify(data)
-    else:
-        return jsonify({"error": "Failed to fetch data from the API."}), response.status_code
+@app.route('/proxy/<path:subpath>', methods=['GET'])
+def proxy(subpath):
+    target_url = f"{API_BASE_URL}/{subpath}"
+    params = request.args
+    
+    try:
+        resp = requests.get(target_url, params=params, allow_redirects=False)
+    except requests.RequestException as e:
+        return Response(f"Proxy Error: {e}", status=500)
+    
+    return Response(resp.content, resp.status_code, resp.headers.items())
 
 @app.route('/data', methods=['POST'])
 def add_data():

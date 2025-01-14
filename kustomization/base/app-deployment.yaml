@@ -14,12 +14,15 @@ spec:
     spec:
       containers:
         - name: app
-          image: europe-central2-docker.pkg.dev/weather-app-demo-447410/backend-application-python/backend:1.0.0
+          image: europe-central2-docker.pkg.dev/weather-app-demo-447410/backend-application-python/backend:1.0.4-a
           ports:
             - containerPort: 5000
           env:
             - name: API_BASE_URL
-              value: "https://api.publicapis.org/entries"
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: api-base-url
             - name: MONGO_HOST
               valueFrom:
                 secretKeyRef:

@@ -1,9 +1,8 @@
 resources:
-  - ../../base
+- ../../base
 
 namePrefix: dev-
 
 patchesStrategicMerge:
   - uri-patch.yaml
   - cron-patch.yaml
-

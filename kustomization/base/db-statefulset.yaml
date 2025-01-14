@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: db
 spec:
@@ -28,9 +28,3 @@ spec:
                 secretKeyRef:
                   name: mongo-password
                   key: mongo-password
-          volumeMounts:
-            - mountPath: /data/db
-              name: mongo-data
-      volumes:
-        - name: mongo-data
-          emptyDir: {}

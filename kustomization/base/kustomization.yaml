@@ -1,14 +1,14 @@
 # Base configuration (common for all environments)
 resources:
-  - app-deployment.yaml
-  - db-deployment.yaml
-  - app-service.yaml
-  - db-service.yaml
-  - db-secret.yaml
-  - db-password.yaml
-  - cron.yaml
-  - ingress.yaml
-  - rolebinding.yaml
-  - role.yaml
-  - sa.yaml
-
+- app-deployment.yaml
+- db-statefulset.yaml
+- app-service.yaml
+- app-secret.yaml
+- db-service.yaml
+- db-secret.yaml
+- db-password.yaml
+- cron.yaml
+- ingress.yaml
+- rolebinding.yaml
+- role.yaml
+- sa.yaml

@@ -5,3 +5,4 @@ namePrefix: stage-
 
 patchesStrategicMerge:
   - uri-patch.yaml
+  - cron-patch.yaml
