@@ -3,16 +3,5 @@ resources:
 
 namePrefix: stage-
 
-patches:
-  - target:
-      kind: Deployment
-      name: app
-    patch: |-
-      spec:
-        replicas: 2
-  - target:
-      kind: Deployment
-      name: db
-    patch: |-
-      spec:
-        replicas: 1
+patchesStrategicMerge:
+  - uri-patch.yaml

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-credentials
+stringData:
+  api-base-url: "https://api.publicapis.org/entries"
+  mongo-uri: "prod-db-service"
+  mongo-user: "production"

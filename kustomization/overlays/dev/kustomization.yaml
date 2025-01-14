@@ -3,5 +3,7 @@ resources:
 
 namePrefix: dev-
 
+patchesStrategicMerge:
+  - uri-patch.yaml
 
 
