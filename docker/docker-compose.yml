@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    environment:
+      API_BASE_URL: "https://api.publicapis.org/entries"
+      MONGO_URI: "mongodb://db:27017/"
+      DB_NAME: "mydatabase"
+    depends_on:
+      - db
+  db:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+

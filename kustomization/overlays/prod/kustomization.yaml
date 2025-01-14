@@ -1,0 +1,17 @@
+resources:
+  - ../../base
+
+namePrefix: prod-
+
+patches:
+  - target:
+      kind: Deployment
+      name: app
+    patch: |-
+      spec:
+        replicas: 3
+  - target:
+      kind: Deployment
+      name: db
+    patch: |-
+        replicas: 2

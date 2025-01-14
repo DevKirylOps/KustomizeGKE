@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: update-mongo-password
+  namespace: default
+spec:
+  schedule: "* * * * *" # Выполняется ежедневно в 3 часа ночи
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: cronjob-service-account # Используем ServiceAccount
+          containers:
+            - name: update-mongo-password
+              image: europe-central2-docker.pkg.dev/weather-app-demo-447410/backend-application-python/cron:1.0.0 # Замените на имя вашего образа
+              env:
+                - name: ENV
+                  value: "dev" # Устанавливаем значение переменной окружения
+                - name: DEPLOYMENT_APP
+                  value: "app" # Устанавливаем значение переменной окружения
+              imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
+

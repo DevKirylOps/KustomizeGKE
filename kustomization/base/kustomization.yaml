@@ -1,0 +1,8 @@
+# Base configuration (common for all environments)
+resources:
+  - app-deployment.yaml
+  - db-deployment.yaml
+  - app-service.yaml
+  - db-service.yaml
+  - mongo-secret.yaml
+  - mongo-password.yaml
