@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: update-mongo-password
+  namespace: default
+spec:
+  schedule: "* * * * *"
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: update-mongo-password
+              env:
+                - name: ENV
+                  value: "dev"
+                - name: DEPLOYMENT_APP
+                  value: "app"
+              imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
