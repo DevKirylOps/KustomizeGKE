@@ -3,6 +3,31 @@ kind: Role
 metadata:
   name: cronjob-role
 rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verbs: ["*"]
+  - apiGroups: [""]
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+  - apiGroups: [""]
+    resources:
+      - pods
+    verbs:
+      - create
+      - delete
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+    verbs:
+      - get
+      - list
+      - watch
+      - patch
+  - apiGroups: ["apps"]
+    resources:
+      - deployments/scale
+    verbs:
+      - update
