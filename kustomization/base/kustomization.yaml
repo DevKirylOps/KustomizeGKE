@@ -4,5 +4,11 @@ resources:
   - db-deployment.yaml
   - app-service.yaml
   - db-service.yaml
-  - mongo-secret.yaml
-  - mongo-password.yaml
+  - db-secret.yaml
+  - db-password.yaml
+  - cron.yaml
+  - ingress.yaml
+  - rolebinding.yaml
+  - role.yaml
+  - sa.yaml
+

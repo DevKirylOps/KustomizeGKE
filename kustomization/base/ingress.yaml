@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: dev-app-service
+            name: app-service
             port:
               number: 5000
         path: /
